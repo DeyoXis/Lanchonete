@@ -21,7 +21,7 @@ public class AtendenteControler {
              
             int rowsInserted = statement.executeUpdate(); // Executa a inserção e retorna valor != 0 se inseriu (ID de inserção do banco)
             if (rowsInserted > 0) {
-                System.out.println("Novo usuário inserido com sucesso");
+                System.out.println("Novo funcionáario inserido com sucesso");
             }
         statement.close();
         conexao.close();
