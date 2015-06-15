@@ -36,6 +36,16 @@ public void selectAtendente()throws SQLException {
              Connection conexao = util.conecta();//utilizar o método conecta da classe util
             Statement statement = conexao.createStatement();
             ResultSet result = statement.executeQuery(sql);
+               int count = 0;
+            while (result.next()){
+                String nome = result.getString("nome");
+                   
+                String output = "Pessoa #%d: %s ";
+                System.out.println(String.format(output, ++count, nome));
+                                
+                                statement.close();
+                                conexao.close();
+            }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } 
