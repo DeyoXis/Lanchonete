@@ -4,6 +4,13 @@
  */
 package View;
 
+import Controler.AtendenteControler;
+import Controler.Produtos_VendidosControler;
+import Model.Produtos_Vendidos;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author info206
@@ -42,7 +49,18 @@ public class Produtos_Vendidoss extends javax.swing.JFrame {
 
         jLabel2.setText("Quantidade:");
 
+        CampoQuantidade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoQuantidadeActionPerformed(evt);
+            }
+        });
+
         jBotaoSalvar.setText("Salvar");
+        jBotaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBotaoSalvarActionPerformed(evt);
+            }
+        });
 
         jBotaoVoltar.setText("Voltar");
         jBotaoVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +124,20 @@ public class Produtos_Vendidoss extends javax.swing.JFrame {
             Apresentacao frame = new Apresentacao();
             frame.setVisible(true);
     }//GEN-LAST:event_jBotaoVoltarActionPerformed
+
+    private void jBotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvarActionPerformed
+            try {
+        Produtos_Vendidos pv = new Produtos_Vendidos (this.CampoQuantidade.getText());
+                Produtos_VendidosControler produtos_vendidosControler = new Produtos_VendidosControler();
+                produtos_vendidosControler.inserirProdutos_Vendidos(pv);
+    } catch (SQLException ex) {
+                Logger.getLogger(Atendentee.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }//GEN-LAST:event_jBotaoSalvarActionPerformed
+
+    private void CampoQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoQuantidadeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoQuantidadeActionPerformed
 
     /**
      * @param args the command line arguments
