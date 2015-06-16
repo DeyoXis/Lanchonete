@@ -4,6 +4,15 @@
  */
 package View;
 
+import Controler.AtendenteControler;
+import Controler.ClientesControler;
+import Model.Atendente;
+import Model.Clientes;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+
 /**
  *
  * @author info206
@@ -31,7 +40,7 @@ public class Cliente extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        CampoNome = new javax.swing.JTextField();
+        CampoNomeCliente = new javax.swing.JTextField();
         CampoTelefone = new javax.swing.JTextField();
         CampoCPF = new javax.swing.JTextField();
         jBotaosalvar = new javax.swing.JButton();
@@ -51,9 +60,9 @@ public class Cliente extends javax.swing.JFrame {
 
         jLabel4.setText("CPF:");
 
-        CampoNome.addActionListener(new java.awt.event.ActionListener() {
+        CampoNomeCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoNomeActionPerformed(evt);
+                CampoNomeClienteActionPerformed(evt);
             }
         });
 
@@ -89,7 +98,7 @@ public class Cliente extends javax.swing.JFrame {
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addGap(18, 18, 18)
-                                .addComponent(CampoNome))
+                                .addComponent(CampoNomeCliente))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -118,7 +127,7 @@ public class Cliente extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(27, 27, 27)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CampoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(CampoNomeCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -147,16 +156,22 @@ public class Cliente extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void CampoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoNomeActionPerformed
+    private void CampoNomeClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoNomeClienteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_CampoNomeActionPerformed
+    }//GEN-LAST:event_CampoNomeClienteActionPerformed
 
     private void CampoCPFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoCPFActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CampoCPFActionPerformed
 
     private void jBotaosalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaosalvarActionPerformed
-        // TODO add your handling code here:
+        try {
+        Clientes c = new Clientes (this.CampoNomeCliente.getText(), this.CampoTelefone.getText(), this.CampoCPF.getText());
+                ClientesControler clientesControler = new ClientesControler();
+                clientesControler.inserirClientes(c);
+    } catch (SQLException ex) {
+                Logger.getLogger(Atendentee.class.getName()).log(Level.SEVERE, null, ex);
+                }
     }//GEN-LAST:event_jBotaosalvarActionPerformed
 
     private void jBotaovoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaovoltarActionPerformed
@@ -200,7 +215,7 @@ public class Cliente extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CampoCPF;
-    private javax.swing.JTextField CampoNome;
+    private javax.swing.JTextField CampoNomeCliente;
     private javax.swing.JTextField CampoTelefone;
     private javax.swing.JButton jBotaosalvar;
     private javax.swing.JButton jBotaovoltar;

@@ -4,6 +4,12 @@
  */
 package View;
 
+import Controler.AtendenteControler;
+import Model.Atendente;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author info206
@@ -43,6 +49,11 @@ public class Atendentee extends javax.swing.JFrame {
         jLabel2.setText("Nome:");
 
         jButton1.setText("Salvar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jBotaoVoltar.setText("Voltar");
         jBotaoVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -108,6 +119,16 @@ public class Atendentee extends javax.swing.JFrame {
             Apresentacao frame = new Apresentacao();
             frame.setVisible(true);
     }//GEN-LAST:event_jBotaoVoltarActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+       try {
+        Atendente at = new Atendente (this.CampoNome.getText());
+                AtendenteControler atendenteControler = new AtendenteControler();
+                atendenteControler.inserirAtendente(at);
+    } catch (SQLException ex) {
+                Logger.getLogger(Atendentee.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

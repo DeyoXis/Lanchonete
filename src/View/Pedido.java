@@ -4,6 +4,14 @@
  */
 package View;
 
+import Controler.AtendenteControler;
+import Controler.PedidosControler;
+import Model.Atendente;
+import Model.Pedidos;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author info206
@@ -43,6 +51,11 @@ public class Pedido extends javax.swing.JFrame {
         jLabel2.setText("Obs:");
 
         jBotaoSalvar.setText("Salvar");
+        jBotaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBotaoSalvarActionPerformed(evt);
+            }
+        });
 
         jBotaoVoltar.setText("Voltar");
         jBotaoVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -106,6 +119,16 @@ public class Pedido extends javax.swing.JFrame {
             Apresentacao frame = new Apresentacao();
             frame.setVisible(true);
     }//GEN-LAST:event_jBotaoVoltarActionPerformed
+
+    private void jBotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvarActionPerformed
+        try {
+        Pedidos p = new Pedidos (this.CampoObs.getText());
+                PedidosControler pedidosControler = new PedidosControler();
+                pedidosControler.inserirPedido(p);
+    } catch (SQLException ex) {
+                Logger.getLogger(Atendentee.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }//GEN-LAST:event_jBotaoSalvarActionPerformed
 
     /**
      * @param args the command line arguments

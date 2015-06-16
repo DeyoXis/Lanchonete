@@ -15,9 +15,9 @@ public class ClientesControler {
              Connection conexao = util.conecta();
             String sql = "INSERT INTO Clientes (nome, telefone, cpf) VALUES (?, ?, ?)";
             PreparedStatement statement = conexao.prepareStatement(sql);// note que agora criamos um Statement de forma diferente
-            statement.setString(1, c.getNome());
-            statement.setString(2, c.getTelefone());
-            statement.setString(3, c.getCPF());
+            statement.setString(1, c.getNome_cliente());
+            statement.setString(2, c.getTelefone_cliente());
+            statement.setString(3, c.getCPF_cliente());
              
             int rowsInserted = statement.executeUpdate(); // Executa a inserção e retorna valor != 0 se inseriu (ID de inserção do banco)
             if (rowsInserted > 0) {

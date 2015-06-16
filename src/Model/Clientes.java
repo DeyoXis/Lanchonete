@@ -2,20 +2,21 @@ package Model;
 
 public class Clientes {
         int ID_Clientes;
-        String Nome, Telefone, CPF;
+        String Nome_cliente, Telefone_cliente, CPF_cliente;
 
-    public Clientes(int ID_Clientes, String Nome, String Telefone, String CPF) {
+    public Clientes(int ID_Clientes, String Nome_cliente, String Telefone_cliente, String CPF_cliente) {
         this.ID_Clientes = ID_Clientes;
-        this.Nome = Nome;
-        this.Telefone = Telefone;
-        this.CPF = CPF;
+        this.Nome_cliente = Nome_cliente;
+        this.Telefone_cliente = Telefone_cliente;
+        this.CPF_cliente = CPF_cliente;
     }
-    public Clientes(String Nome, String Telefone, String CPF) {
-        this.Nome = Nome;
-        this.Telefone = Telefone;
-        this.CPF = CPF;
+
+    public Clientes(String Nome_cliente, String Telefone_cliente, String CPF_cliente) {
+        this.Nome_cliente = Nome_cliente;
+        this.Telefone_cliente = Telefone_cliente;
+        this.CPF_cliente = CPF_cliente;
     }
-    
+
     public int getID_Clientes() {
         return ID_Clientes;
     }
@@ -24,27 +25,28 @@ public class Clientes {
         this.ID_Clientes = ID_Clientes;
     }
 
-    public String getNome() {
-        return Nome;
+    public String getNome_cliente() {
+        return Nome_cliente;
     }
 
-    public void setNome(String Nome) {
-        this.Nome = Nome;
+    public void setNome_cliente(String Nome_cliente) {
+        this.Nome_cliente = Nome_cliente;
     }
 
-    public String getTelefone() {
-        return Telefone;
+    public String getTelefone_cliente() {
+        return Telefone_cliente;
     }
 
-    public void setTelefone(String Telefone) {
-        this.Telefone = Telefone;
+    public void setTelefone_cliente(String Telefone_cliente) {
+        this.Telefone_cliente = Telefone_cliente;
     }
 
-    public String getCPF() {
-        return CPF;
+    public String getCPF_cliente() {
+        return CPF_cliente;
     }
 
-    public void setCPF(String CPF) {
-        this.CPF = CPF;
-    }     
+    public void setCPF_cliente(String CPF_cliente) {
+        this.CPF_cliente = CPF_cliente;
+    }
+
 }

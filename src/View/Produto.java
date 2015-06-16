@@ -4,6 +4,12 @@
  */
 package View;
 
+import Controler.ProdutosControler;
+import Model.Produtos;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author info206
@@ -30,7 +36,7 @@ public class Produto extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        CampoDescricao = new javax.swing.JTextField();
+        CampoDescricaoProduto = new javax.swing.JTextField();
         CampoPreco = new javax.swing.JTextField();
         jBotaoSalvar = new javax.swing.JButton();
         jBotaoVoltar = new javax.swing.JButton();
@@ -47,6 +53,11 @@ public class Produto extends javax.swing.JFrame {
         jLabel3.setText("Preço:");
 
         jBotaoSalvar.setText("Salvar");
+        jBotaoSalvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBotaoSalvarActionPerformed(evt);
+            }
+        });
 
         jBotaoVoltar.setText("Voltar");
         jBotaoVoltar.addActionListener(new java.awt.event.ActionListener() {
@@ -79,7 +90,7 @@ public class Produto extends javax.swing.JFrame {
                                 .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                     .addComponent(jLabel2)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(CampoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(CampoDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, 259, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                 .addContainerGap(24, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
@@ -91,7 +102,7 @@ public class Produto extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(CampoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(CampoDescricaoProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(26, 26, 26)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel3)
@@ -123,6 +134,16 @@ public class Produto extends javax.swing.JFrame {
             Apresentacao frame = new Apresentacao();
             frame.setVisible(true);
     }//GEN-LAST:event_jBotaoVoltarActionPerformed
+
+    private void jBotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvarActionPerformed
+        try {
+        Produtos pr = new Produtos (this.CampoDescricaoProduto.getText(),this.CampoPreco.getText());
+                ProdutosControler produtosControler = new ProdutosControler();
+                produtosControler.inserirProduto(pr);
+    } catch (SQLException ex) {
+                Logger.getLogger(Atendentee.class.getName()).log(Level.SEVERE, null, ex);
+                }
+    }//GEN-LAST:event_jBotaoSalvarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -159,7 +180,7 @@ public class Produto extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CampoDescricao;
+    private javax.swing.JTextField CampoDescricaoProduto;
     private javax.swing.JTextField CampoPreco;
     private javax.swing.JButton jBotaoSalvar;
     private javax.swing.JButton jBotaoVoltar;

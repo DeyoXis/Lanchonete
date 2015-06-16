@@ -4,6 +4,14 @@
  */
 package View;
 
+import Controler.AtendenteControler;
+import Controler.MesasControler;
+import Model.Atendente;
+import Model.Mesas;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author info206
@@ -118,7 +126,13 @@ public class Mesa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvarActionPerformed
-        // TODO add your handling code here:
+        try {
+        Mesas m = new Mesas (this.CampoDescricao.getText());
+                MesasControler mesasControler = new MesasControler();
+                mesasControler.inserirMesa(m);
+    } catch (SQLException ex) {
+                Logger.getLogger(Atendentee.class.getName()).log(Level.SEVERE, null, ex);
+                }
     }//GEN-LAST:event_jBotaoSalvarActionPerformed
 
     private void CampoDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoDescricaoActionPerformed
