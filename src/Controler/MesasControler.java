@@ -13,7 +13,7 @@ public class MesasControler {
             try {
             Util util = new Util();
              Connection conexao = util.conecta();
-            String sql = "INSERT INTO pessoa (descrição) VALUES (?)";
+            String sql = "INSERT INTO mesa (descrição) VALUES (?)";
             PreparedStatement statement = conexao.prepareStatement(sql);// note que agora criamos um Statement de forma diferente
             statement.setString(1, m.getDescricao());
              
@@ -39,7 +39,7 @@ public void selectMesas()throws SQLException {
             while (result.next()){
                 String Descricao = result.getString("descrição");
                 
-                String output = "Pessoa #%d: %s";
+                String output = "Mesas #%d: %s";
                 System.out.println(String.format(output, ++count, Descricao));
                                 
                                 statement.close();
