@@ -138,7 +138,7 @@ public class Mesa extends javax.swing.JFrame {
                 MesasControler mesasControler = new MesasControler();
                 mesasControler.inserirMesa(m);
     } catch (SQLException ex) {
-                Logger.getLogger(Mesa.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(Mesas.class.getName()).log(Level.SEVERE, null, ex);
                 }
     }//GEN-LAST:event_jBotaoSalvarActionPerformed
 
