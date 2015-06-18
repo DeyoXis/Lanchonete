@@ -4,7 +4,6 @@
  */
 package View;
 
-import Controler.AtendenteControler;
 import Controler.Produtos_VendidosControler;
 import Model.Produtos_Vendidos;
 import java.sql.SQLException;

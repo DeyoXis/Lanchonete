@@ -4,6 +4,14 @@
  */
 package View;
 
+import Controler.PedidosControler;
+import Controler.ProdutosControler;
+import Model.Pedidos;
+import Model.Produtos;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author info206
@@ -130,7 +138,13 @@ public class Produto extends javax.swing.JFrame {
     }//GEN-LAST:event_jBotaoVoltarActionPerformed
 
     private void jBotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvarActionPerformed
-
+            try {
+        Produtos pt = new Produtos (this.CampoDescricaoProduto.getText(),Float.parseFloat(this.CampoPreco.getText()));
+                ProdutosControler produtosControler = new ProdutosControler();
+                produtosControler.inserirProduto(pt);
+    } catch (SQLException ex) {
+                Logger.getLogger(Atendentee.class.getName()).log(Level.SEVERE, null, ex);
+                }
     }//GEN-LAST:event_jBotaoSalvarActionPerformed
 
     /**

@@ -4,9 +4,7 @@
  */
 package View;
 
-import Controler.AtendenteControler;
 import Controler.PedidosControler;
-import Model.Atendente;
 import Model.Pedidos;
 import java.sql.SQLException;
 import java.util.logging.Level;

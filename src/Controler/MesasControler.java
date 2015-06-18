@@ -37,7 +37,7 @@ public void selectMesas()throws SQLException {
             ResultSet result = statement.executeQuery(sql);
             int count = 0;
             while (result.next()){
-                String Descricao = result.getString("Descrição");
+                String Descricao = result.getString("descrição");
                 
                 String output = "Pessoa #%d: %s";
                 System.out.println(String.format(output, ++count, Descricao));

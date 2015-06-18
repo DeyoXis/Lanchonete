@@ -4,9 +4,7 @@
  */
 package View;
 
-import Controler.AtendenteControler;
 import Controler.ClientesControler;
-import Model.Atendente;
 import Model.Clientes;
 import java.sql.SQLException;
 import java.util.logging.Level;
@@ -208,6 +206,7 @@ public class Cliente extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Cliente().setVisible(true);
             }
