@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lanchonete.Util;
 
 public class ProdutosControler {
@@ -13,7 +16,7 @@ public class ProdutosControler {
             try {
             Util util = new Util();
              Connection conexao = util.conecta();
-            String sql = "INSERT INTO pessoa (descricao, preço) VALUES (?, ?)";
+            String sql = "INSERT INTO Produtos (descricao, preço) VALUES (?, ?)";
             PreparedStatement statement = conexao.prepareStatement(sql);// note que agora criamos um Statement de forma diferente
             statement.setString(1, p.getDescricao());
             statement.setFloat(2, p.getPreco());
@@ -28,27 +31,40 @@ public class ProdutosControler {
             System.out.println(e.getMessage());
         }
     }
+            
+public Vector selectProdutos()throws SQLException {
+                       Vector s =new Vector();
 
-public void selectProdutos()throws SQLException {
         try {
-            String sql = "SELECT * FROM produtos";
+            String sql = "SELECT * FROM Produtos";
             Util util = new Util();
-             Connection conexao = util.conecta();
+            Connection conexao = util.conecta();
             Statement statement = conexao.createStatement();
             ResultSet result = statement.executeQuery(sql);
             int count = 0;
             while (result.next()){
-                Float preco = result.getFloat("preco");
-                String endereco = result.getString("endereco");
-                
-                String output = "Pessoa #%d: %s - %s ";
-                System.out.println(String.format(output, ++count, preco, endereco));
-                                
-                                statement.close();
-                                conexao.close();
+                  s.add(result.getString("descricao"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } 
+        return s;
+    }
+    
+    public int  getIdByNome(String descricao){
+        int id=-1;
+            try {
+            Util util= new Util();
+            Connection conexao = util.conecta();
+            String sql= "Select ID_Produtos from Produtos where descricao like '"+descricao+"'";
+                Statement statement = conexao.createStatement();
+          ResultSet result = statement.executeQuery(sql);
+           while (result.next()){               
+               id=result.getInt("ID_Produtos");
+            }
+       } catch (SQLException ex) {
+            Logger.getLogger(ProdutosControler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
     }
 }

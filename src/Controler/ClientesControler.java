@@ -6,6 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import lanchonete.Util;
 
 public class ClientesControler {
@@ -29,9 +32,10 @@ public class ClientesControler {
             System.out.println(e.getMessage());
         }
     }
-        public void selectPessoa()throws SQLException {
+       public Vector selectPessoa()throws SQLException {
+                    Vector s =new Vector();
         try {
-            String sql = "SELECT * FROM Cliente";
+            String sql = "SELECT * FROM Clientes";
             Util util = new Util();
              Connection conexao = util.conecta();
             Statement statement = conexao.createStatement();
@@ -42,7 +46,7 @@ public class ClientesControler {
                 String CPF = result.getString("CPF");
                 String Telefone = result.getString("Telefone");
                                 
-                String output = "Pessoa #%d: %s - %s - %s ";
+                String output = "Clientes #%d: %s - %s - %s ";
                 System.out.println(String.format(output, ++count, nome,CPF, Telefone));
                                 
                                 statement.close();
@@ -51,5 +55,24 @@ public class ClientesControler {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } 
+        return s;
+    }
+       
+        
+        public int  getIdByNome(String Nome){
+        int id=-1;
+            try {
+            Util util= new Util();
+            Connection conexao = util.conecta();
+            String sql= "Select ID_Clientes from Produtos where descricao like '"+Nome+"'";
+                Statement statement = conexao.createStatement();
+          ResultSet result = statement.executeQuery(sql);
+           while (result.next()){               
+               id=result.getInt("ID_Clientes");
+            }
+       } catch (SQLException ex) {
+            Logger.getLogger(ProdutosControler.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
     }
 }

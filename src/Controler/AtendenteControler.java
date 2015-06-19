@@ -40,7 +40,7 @@ public void selectAtendente()throws SQLException {
             while (result.next()){
                 String nome = result.getString("nome");
                    
-                String output = "Pessoa #%d: %s ";
+                String output = "Atendente #%d: %s ";
                 System.out.println(String.format(output, ++count, nome));
                                 
                                 statement.close();

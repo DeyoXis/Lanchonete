@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Vector;
 import lanchonete.Util;
 
 public class PedidosControler {
@@ -13,7 +14,7 @@ public class PedidosControler {
             try {
             Util util = new Util();
              Connection conexao = util.conecta();
-            String sql = "INSERT INTO pedido (Obs) VALUES (?)";
+            String sql = "INSERT INTO Pedido (Obs) VALUES (?)";
             PreparedStatement statement = conexao.prepareStatement(sql);// note que agora criamos um Statement de forma diferente
             statement.setString(1, p.getObs());
              
@@ -30,16 +31,17 @@ public class PedidosControler {
 
 public void selectPedidos()throws SQLException {
         try {
-            String sql = "SELECT * FROM pedidos";
+            String sql = "SELECT * FROM Pedido";
             Util util = new Util();
              Connection conexao = util.conecta();
             Statement statement = conexao.createStatement();
             ResultSet result = statement.executeQuery(sql);
             int count = 0;
             while (result.next()){
-                String Obs = result.getString("Obs: ");
+                String Obs = result.getString("Obs");
+                int Clientes_idClientes = result.getInt("Clientes_idClientes");
                 
-                String output = "Pessoa #%d: %s";
+                String output = "Pedido #%d: %s";
                 System.out.println(String.format(output, ++count, Obs));
                                 
                                 statement.close();
@@ -49,4 +51,6 @@ public void selectPedidos()throws SQLException {
             System.out.println(e.getMessage());
         } 
     }
+
+
 }
