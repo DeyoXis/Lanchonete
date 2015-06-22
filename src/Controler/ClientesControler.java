@@ -59,7 +59,7 @@ public class ClientesControler {
     }
        
         
-        public int  getIdByNome(String Nome){
+        public int  getIdByNome_Cliente(String Nome){
         int id=-1;
             try {
             Util util= new Util();

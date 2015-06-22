@@ -4,10 +4,12 @@
  */
 package View;
 
+import Controler.AtendenteControler;
 import Controler.ClientesControler;
+import Controler.MesasControler;
 import Controler.PedidosControler;
-import Controler.ProdutosControler;
 import Controler.Produtos_VendidosControler;
+import Model.Atendente;
 import Model.Mesas;
 import Model.Pedidos;
 import Model.Produtos_Vendidos;
@@ -26,26 +28,15 @@ public class Pedido extends javax.swing.JFrame {
      * Creates new form Pedido
      */
     public Pedido() {
-        
-            try {
-                initComponents();
-                ProdutosControler  d = new ProdutosControler();
-                Vector  s = d.selectProdutos();
-          //carrega os valore da função  getNomes
-                 combo_produtos.setModel(new  javax.swing.DefaultComboBoxModel(s));
-            } catch (SQLException ex) {
-                Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                initComponents();
-                ClientesControler  c = new ClientesControler();
-                Vector  s = c.selectPessoa();
-          //carrega os valore da função  getNomes
-                 combo_cliente.setModel(new  javax.swing.DefaultComboBoxModel(s));
+        try {
+            initComponents();
+            ClientesControler c = new ClientesControler();
+         Vector   s = c.selectPessoa();
+          combo_cliente1.setModel(new  javax.swing.DefaultComboBoxModel(s));
         } catch (SQLException ex) {
             Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
         }
-       
+
     }
     
 
@@ -64,14 +55,14 @@ public class Pedido extends javax.swing.JFrame {
         CampoObs = new javax.swing.JTextField();
         jBotaoSalvar = new javax.swing.JButton();
         jBotaoVoltar = new javax.swing.JButton();
-        combo_cliente = new javax.swing.JComboBox();
         jLabel3 = new javax.swing.JLabel();
         CampoQuantidade = new javax.swing.JTextField();
-        jBotaoSalvar1 = new javax.swing.JButton();
-        combo_produtos = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
         CampoDescricao = new javax.swing.JTextField();
-        jBotaoSalvar2 = new javax.swing.JButton();
+        jLabel5 = new javax.swing.JLabel();
+        CampoNome = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        combo_cliente1 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -81,6 +72,12 @@ public class Pedido extends javax.swing.JFrame {
         jLabel1.setText("Pedido");
 
         jLabel2.setText("Obs:");
+
+        CampoObs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CampoObsActionPerformed(evt);
+            }
+        });
 
         jBotaoSalvar.setText("Salvar");
         jBotaoSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -96,13 +93,6 @@ public class Pedido extends javax.swing.JFrame {
             }
         });
 
-        combo_cliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        combo_cliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                combo_clienteActionPerformed(evt);
-            }
-        });
-
         jLabel3.setText("Quantidade:");
 
         CampoQuantidade.addActionListener(new java.awt.event.ActionListener() {
@@ -111,16 +101,7 @@ public class Pedido extends javax.swing.JFrame {
             }
         });
 
-        jBotaoSalvar1.setText("+");
-        jBotaoSalvar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotaoSalvar1ActionPerformed(evt);
-            }
-        });
-
-        combo_produtos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jLabel4.setText("Produto");
+        jLabel4.setText("Mesa:");
 
         CampoDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -128,78 +109,77 @@ public class Pedido extends javax.swing.JFrame {
             }
         });
 
-        jBotaoSalvar2.setText("+");
-        jBotaoSalvar2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jBotaoSalvar2ActionPerformed(evt);
-            }
-        });
+        jLabel5.setText("Atendente:");
+
+        jLabel6.setText("Cliente:");
+
+        combo_cliente1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(jLabel3)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(CampoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(combo_produtos, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jBotaoSalvar1))
-                            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                    .addGap(34, 34, 34)
-                                    .addComponent(jBotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(109, 109, 109)
-                                    .addComponent(jBotaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                    .addContainerGap()
-                                    .addComponent(jLabel4)
-                                    .addGap(14, 14, 14)
-                                    .addComponent(CampoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(combo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                    .addComponent(jBotaoSalvar2))))
-                        .addGap(0, 17, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(CampoObs, javax.swing.GroupLayout.PREFERRED_SIZE, 284, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGap(156, 156, 156)
+                .addGap(109, 109, 109)
                 .addComponent(jLabel1)
                 .addGap(0, 0, Short.MAX_VALUE))
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addComponent(jLabel5)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(CampoNome, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel2))
+                                .addGap(35, 35, 35)
+                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(CampoObs, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                        .addComponent(CampoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jLabel3)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(CampoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(combo_cliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jBotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jBotaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jInternalFrame1Layout.setVerticalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(8, 8, 8)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(combo_cliente1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(CampoNome, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(CampoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBotaoSalvar2))
-                .addGap(18, 18, 18)
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
-                    .addComponent(CampoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(combo_produtos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jBotaoSalvar1))
+                    .addComponent(CampoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(CampoObs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 137, Short.MAX_VALUE)
+                    .addComponent(jLabel2)
+                    .addComponent(CampoObs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jBotaoVoltar))
@@ -210,15 +190,11 @@ public class Pedido extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jInternalFrame1, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jInternalFrame1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jInternalFrame1)
         );
 
         pack();
@@ -230,20 +206,24 @@ public class Pedido extends javax.swing.JFrame {
     }//GEN-LAST:event_jBotaoVoltarActionPerformed
 
     private void jBotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvarActionPerformed
+        //Salva o Atendente
         try {
-        Pedidos p = new Pedidos (this.CampoObs.getText());
-                PedidosControler pedidosControler = new PedidosControler();
-                pedidosControler.inserirPedido(p);
-    } catch (SQLException ex) {
-                Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
-                }
-    }//GEN-LAST:event_jBotaoSalvarActionPerformed
-
-    private void CampoQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoQuantidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CampoQuantidadeActionPerformed
-
-    private void jBotaoSalvar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvar1ActionPerformed
+            Atendente at = new Atendente (this.CampoNome.getText());
+            AtendenteControler atendenteControler = new AtendenteControler();
+            atendenteControler.inserirAtendente(at);
+        } catch (SQLException ex) {
+            Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        //Salva o Produto
+        try {
+            Mesas m = new Mesas (this.CampoDescricao.getText());
+            MesasControler mesasControler = new MesasControler();
+            mesasControler.inserirMesa(m);
+        } catch (SQLException ex) {
+            Logger.getLogger(Mesas.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        //Salva o Produtos_Vendidos
         try {
             Produtos_Vendidos pv = new Produtos_Vendidos (this.CampoQuantidade.getText());
             Produtos_VendidosControler produtos_vendidosControler = new Produtos_VendidosControler();
@@ -251,25 +231,29 @@ public class Pedido extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Produtos_Vendidoss.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jBotaoSalvar1ActionPerformed
+        
+        //Salva a Obs
+        try {
+        Pedidos p = new Pedidos (this.CampoObs.getText());
+                PedidosControler pedidosControler = new PedidosControler();
+                pedidosControler.inserirPedido(p);
+    } catch (SQLException ex) {
+                Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
+                }
+        
+    }//GEN-LAST:event_jBotaoSalvarActionPerformed
 
-    private void combo_clienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_clienteActionPerformed
+    private void CampoQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoQuantidadeActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_combo_clienteActionPerformed
+    }//GEN-LAST:event_CampoQuantidadeActionPerformed
 
     private void CampoDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoDescricaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CampoDescricaoActionPerformed
 
-    private void jBotaoSalvar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvar2ActionPerformed
-     /*   try {
-            Mesas m = new Mesas (this.CampoDescricao.getText());
-            MesasControler mesasControler = new MesasControler();
-            mesasControler.inserirMesa(m);
-        } catch (SQLException ex) {
-            Logger.getLogger(Mesas.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
-    }//GEN-LAST:event_jBotaoSalvar2ActionPerformed
+    private void CampoObsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoObsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_CampoObsActionPerformed
 
     /**
      * @param args the command line arguments
@@ -307,18 +291,18 @@ public class Pedido extends javax.swing.JFrame {
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField CampoDescricao;
+    private javax.swing.JTextField CampoNome;
     private javax.swing.JTextField CampoObs;
     private javax.swing.JTextField CampoQuantidade;
-    private javax.swing.JComboBox combo_cliente;
-    private javax.swing.JComboBox combo_produtos;
+    private javax.swing.JComboBox combo_cliente1;
     private javax.swing.JButton jBotaoSalvar;
-    private javax.swing.JButton jBotaoSalvar1;
-    private javax.swing.JButton jBotaoSalvar2;
     private javax.swing.JButton jBotaoVoltar;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     // End of variables declaration//GEN-END:variables
 }

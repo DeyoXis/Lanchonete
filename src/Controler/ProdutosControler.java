@@ -51,7 +51,7 @@ public Vector selectProdutos()throws SQLException {
         return s;
     }
     
-    public int  getIdByNome(String descricao){
+    public int  getIdByNome_Produtos(String descricao){
         int id=-1;
             try {
             Util util= new Util();

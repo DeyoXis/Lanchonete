@@ -6,7 +6,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.Vector;
 import lanchonete.Util;
 
 public class PedidosControler {
@@ -39,10 +38,13 @@ public void selectPedidos()throws SQLException {
             int count = 0;
             while (result.next()){
                 String Obs = result.getString("Obs");
-                int Clientes_idClientes = result.getInt("Clientes_idClientes");
+                int Clientes_idClientes = result.getInt ("Clientes_idClientes");
+                int Atendente_idAtendente = result.getInt ("Atendente_idAtendente");
+                int Produtos_Vendidos_id_Item = result.getInt("Produtos_Vendidos_id_Produtos");
+                int Mesas_idMesas = result.getInt("Mesas_idMesas");
                 
                 String output = "Pedido #%d: %s";
-                System.out.println(String.format(output, ++count, Obs));
+                System.out.println(String.format(output, ++count, Obs, Clientes_idClientes, Atendente_idAtendente, Produtos_Vendidos_id_Item, Mesas_idMesas));
                                 
                                 statement.close();
                                 conexao.close();
