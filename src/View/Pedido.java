@@ -8,6 +8,7 @@ import Controler.ClientesControler;
 import Controler.PedidosControler;
 import Controler.ProdutosControler;
 import Controler.Produtos_VendidosControler;
+import Model.Mesas;
 import Model.Pedidos;
 import Model.Produtos_Vendidos;
 import java.sql.SQLException;
@@ -119,7 +120,7 @@ public class Pedido extends javax.swing.JFrame {
 
         combo_produtos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
-        jLabel4.setText("Descrição:");
+        jLabel4.setText("Produto");
 
         CampoDescricao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -166,7 +167,7 @@ public class Pedido extends javax.swing.JFrame {
                                     .addComponent(combo_cliente, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(jBotaoSalvar2))))
-                        .addGap(0, 5, Short.MAX_VALUE))
+                        .addGap(0, 17, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel2)
@@ -261,13 +262,13 @@ public class Pedido extends javax.swing.JFrame {
     }//GEN-LAST:event_CampoDescricaoActionPerformed
 
     private void jBotaoSalvar2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvar2ActionPerformed
-        try {
+     /*   try {
             Mesas m = new Mesas (this.CampoDescricao.getText());
             MesasControler mesasControler = new MesasControler();
             mesasControler.inserirMesa(m);
         } catch (SQLException ex) {
             Logger.getLogger(Mesas.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }*/
     }//GEN-LAST:event_jBotaoSalvar2ActionPerformed
 
     /**
