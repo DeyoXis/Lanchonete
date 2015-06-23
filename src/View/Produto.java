@@ -21,15 +21,9 @@ public class Produto extends javax.swing.JFrame {
      * Creates new form Produto
      */
     public Produto() {
-        try {
+       
                 initComponents();
-                ProdutosControler  d = new ProdutosControler();
-                Vector  s = d.selectProdutos();
-          //carrega os valore da função  getNomes
-                 combo_produtos.setModel(new  javax.swing.DefaultComboBoxModel(s));
-            } catch (SQLException ex) {
-                Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
-            }  
+            
     }
 
     /**
@@ -48,8 +42,8 @@ public class Produto extends javax.swing.JFrame {
         jTextField2 = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jBotaoSalvar = new javax.swing.JButton();
-        combo_produtos = new javax.swing.JComboBox();
         jLabel4 = new javax.swing.JLabel();
+        CampoDescricao = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -58,7 +52,7 @@ public class Produto extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
         jLabel1.setText("Produto");
 
-        jLabel2.setText("Descrição:");
+        jLabel2.setText("Tipo:");
 
         jLabel3.setText("Preço:");
 
@@ -76,8 +70,6 @@ public class Produto extends javax.swing.JFrame {
             }
         });
 
-        combo_produtos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         jLabel4.setText("R$");
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
@@ -93,15 +85,15 @@ public class Produto extends javax.swing.JFrame {
                             .addComponent(jLabel3))
                         .addGap(18, 18, 18)
                         .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(combo_produtos, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                                 .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4)))
-                        .addGap(0, 75, Short.MAX_VALUE))
+                                .addComponent(jLabel4))
+                            .addComponent(CampoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 183, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jInternalFrame1Layout.createSequentialGroup()
                         .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                         .addComponent(jBotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
@@ -116,11 +108,11 @@ public class Produto extends javax.swing.JFrame {
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addComponent(jLabel1)
-                .addGap(26, 26, 26)
+                .addGap(27, 27, 27)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(combo_produtos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(20, 20, 20)
+                    .addComponent(CampoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,8 +139,8 @@ public class Produto extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jBotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvarActionPerformed
-        try {
-        Produtos pr = new Produtos((String)combo_produtos.getSelectedItem(),Float.parseFloat(jTextField2.getText()));
+          try {
+        Produtos pr = new Produtos(this.CampoDescricao.getText(), Float.parseFloat(jTextField2.getText()));
                 ProdutosControler produtosControler = new ProdutosControler();
                 produtosControler.inserirProduto(pr);
     } catch (SQLException ex) {
@@ -196,7 +188,7 @@ public class Produto extends javax.swing.JFrame {
         });
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox combo_produtos;
+    private javax.swing.JTextField CampoDescricao;
     private javax.swing.JButton jBotaoSalvar;
     private javax.swing.JButton jButton1;
     private javax.swing.JInternalFrame jInternalFrame1;
