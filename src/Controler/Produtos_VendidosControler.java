@@ -13,9 +13,10 @@ public class Produtos_VendidosControler {
             try {
             Util util = new Util();
              Connection conexao = util.conecta();
-            String sql = "INSERT INTO produtos_vendidos (quantidade) VALUES (?)";
+            String sql = "INSERT INTO Produtos_Vendidos (quantidade,Produtos_idProdutos) VALUES (?,?)";
             PreparedStatement statement = conexao.prepareStatement(sql);// note que agora criamos um Statement de forma diferente
-            statement.setString(1, pv.getQuantidade());
+            statement.setInt(1, Integer.parseInt(pv.getQuantidade()));
+            statement.setInt(2, Integer.parseInt(pv.getQuantidade()));
             int rowsInserted = statement.executeUpdate(); // Executa a inserção e retorna valor != 0 se inseriu (ID de inserção do banco)
             if (rowsInserted > 0) {
                 System.out.println("Nova quantidade inserida com sucesso");
@@ -29,7 +30,7 @@ public class Produtos_VendidosControler {
 
 public void selectProdutos_Vendidos()throws SQLException {
         try {
-            String sql = "SELECT * FROM produtos_vendidos";
+            String sql = "SELECT * FROM Produtos_Vendidos";
             Util util = new Util();
              Connection conexao = util.conecta();
             Statement statement = conexao.createStatement();
@@ -38,7 +39,7 @@ public void selectProdutos_Vendidos()throws SQLException {
             while (result.next()){
                 String Quantidade = result.getString("quantidade");
                 
-                String output = "Pessoa #%d: %s ";
+                String output = "Produtos_Vendidos #%d: %s ";
                 System.out.println(String.format(output, ++count, Quantidade));
                                 
                                 statement.close();
@@ -48,4 +49,4 @@ public void selectProdutos_Vendidos()throws SQLException {
             System.out.println(e.getMessage());
         } 
     }
-}
+    }

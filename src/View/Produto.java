@@ -140,7 +140,7 @@ public class Produto extends javax.swing.JFrame {
 
     private void jBotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvarActionPerformed
           try {
-        Produtos pr = new Produtos(this.CampoDescricao.getText(), Float.parseFloat(jTextField2.getText()));
+        Produtos pr = new Produtos(0, this.CampoDescricao.getText(), Float.parseFloat(jTextField2.getText()));
                 ProdutosControler produtosControler = new ProdutosControler();
                 produtosControler.inserirProduto(pr);
     } catch (SQLException ex) {

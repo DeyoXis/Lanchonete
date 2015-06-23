@@ -16,7 +16,7 @@ public class ProdutosControler {
             try {
             Util util = new Util();
              Connection conexao = util.conecta();
-            String sql = "INSERT INTO Produtos (descricao, preço) VALUES (?, ?)";
+            String sql = "INSERT INTO Produtos (descricao, preco) VALUES (?, ?)";
             PreparedStatement statement = conexao.prepareStatement(sql);// note que agora criamos um Statement de forma diferente
             statement.setString(1, p.getDescricao());
             statement.setFloat(2, p.getPreco());
@@ -56,11 +56,11 @@ public Vector selectProdutos()throws SQLException {
             try {
             Util util= new Util();
             Connection conexao = util.conecta();
-            String sql= "Select ID_Produtos from Produtos where descricao like '"+descricao+"'";
+            String sql= "Select idProdutos from Produtos where descricao like '"+descricao+"'";
                 Statement statement = conexao.createStatement();
           ResultSet result = statement.executeQuery(sql);
            while (result.next()){               
-               id=result.getInt("ID_Produtos");
+               id=result.getInt("idProdutos");
             }
        } catch (SQLException ex) {
             Logger.getLogger(ProdutosControler.class.getName()).log(Level.SEVERE, null, ex);

@@ -8,6 +8,7 @@ import Controler.AtendenteControler;
 import Controler.ClientesControler;
 import Controler.MesasControler;
 import Controler.PedidosControler;
+import Controler.ProdutosControler;
 import Controler.Produtos_VendidosControler;
 import Model.Atendente;
 import Model.Mesas;
@@ -31,8 +32,11 @@ public class Pedido extends javax.swing.JFrame {
         try {
             initComponents();
             ClientesControler c = new ClientesControler();
+            ProdutosControler p = new  ProdutosControler();
          Vector   s = c.selectPessoa();
+         Vector   r = p.selectProdutos();
           combo_cliente1.setModel(new  javax.swing.DefaultComboBoxModel(s));
+          combo_produto2.setModel(new  javax.swing.DefaultComboBoxModel(r));
         } catch (SQLException ex) {
             Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -55,17 +59,18 @@ public class Pedido extends javax.swing.JFrame {
         CampoObs = new javax.swing.JTextField();
         jBotaoSalvar = new javax.swing.JButton();
         jBotaoVoltar = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        CampoQuantidade = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         CampoDescricao = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         CampoNome = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         combo_cliente1 = new javax.swing.JComboBox();
+        jLabel7 = new javax.swing.JLabel();
+        combo_produto2 = new javax.swing.JComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jInternalFrame1.setBackground(new java.awt.Color(204, 204, 204));
         jInternalFrame1.setVisible(true);
 
         jLabel1.setFont(new java.awt.Font("Segoe Print", 1, 14)); // NOI18N
@@ -93,14 +98,6 @@ public class Pedido extends javax.swing.JFrame {
             }
         });
 
-        jLabel3.setText("Quantidade:");
-
-        CampoQuantidade.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CampoQuantidadeActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("Mesa:");
 
         CampoDescricao.addActionListener(new java.awt.event.ActionListener() {
@@ -115,47 +112,52 @@ public class Pedido extends javax.swing.JFrame {
 
         combo_cliente1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
+        jLabel7.setText("Produto");
+
+        combo_produto2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
         jInternalFrame1Layout.setHorizontalGroup(
             jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2))
-                                .addGap(35, 35, 35)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(CampoObs, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                        .addComponent(CampoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jLabel3)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(CampoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                            .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel5)
-                                    .addComponent(jLabel6))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(CampoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
-                                    .addComponent(combo_cliente1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(jInternalFrame1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jBotaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jBotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jInternalFrame1Layout.createSequentialGroup()
                 .addGap(95, 95, 95)
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                            .addGap(22, 22, 22)
+                            .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel2))
+                                    .addGap(35, 35, 35)
+                                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(CampoObs, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(CampoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel5)
+                                        .addComponent(jLabel6))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(CampoNome, javax.swing.GroupLayout.DEFAULT_SIZE, 137, Short.MAX_VALUE)
+                                        .addComponent(combo_cliente1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGap(0, 0, Short.MAX_VALUE))
+                        .addGroup(jInternalFrame1Layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addComponent(jBotaoVoltar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jBotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jInternalFrame1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel7)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(combo_produto2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         jInternalFrame1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBotaoSalvar, jBotaoVoltar});
@@ -175,14 +177,16 @@ public class Pedido extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(CampoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3)
-                    .addComponent(CampoQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(CampoDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(CampoObs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(52, 52, 52)
+                .addGap(12, 12, 12)
+                .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel7)
+                    .addComponent(combo_produto2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jInternalFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jBotaoVoltar)
                     .addComponent(jBotaoSalvar, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -228,18 +232,16 @@ public class Pedido extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(Mesas.class.getName()).log(Level.SEVERE, null, ex);
         }
-        //Salva o Produtos_Vendidos
-        try {
-            Produtos_Vendidos pv = new Produtos_Vendidos (this.CampoQuantidade.getText());
-            Produtos_VendidosControler produtos_vendidosControler = new Produtos_VendidosControler();
-            produtos_vendidosControler.inserirProdutos_Vendidos(pv);
-        } catch (SQLException ex) {
-            Logger.getLogger(Produtos_Vendidoss.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
-        //Salva a Obs
+        //Salva o Pedido e Produto
+        ProdutosControler pr = new ProdutosControler();
+        int Produto_ID = pr.getIdByNome_Produtos((String)combo_produto2.getSelectedItem());
+        
+        ClientesControler cli=  new ClientesControler();
+        int cliente_ID = cli.getIdByNome_Cliente((String)combo_cliente1.getSelectedItem());
+        
         try {
-        Pedidos p = new Pedidos (this.CampoObs.getText());
+        Pedidos p = new Pedidos (0, null, cliente_ID, cliente_ID, Produto_ID, 0);
                 PedidosControler pedidosControler = new PedidosControler();
                 pedidosControler.inserirPedido(p);
     } catch (SQLException ex) {
@@ -247,10 +249,6 @@ public class Pedido extends javax.swing.JFrame {
                 }
         
     }//GEN-LAST:event_jBotaoSalvarActionPerformed
-
-    private void CampoQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoQuantidadeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CampoQuantidadeActionPerformed
 
     private void CampoDescricaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoDescricaoActionPerformed
         // TODO add your handling code here:
@@ -298,16 +296,16 @@ public class Pedido extends javax.swing.JFrame {
     private javax.swing.JTextField CampoDescricao;
     private javax.swing.JTextField CampoNome;
     private javax.swing.JTextField CampoObs;
-    private javax.swing.JTextField CampoQuantidade;
     private javax.swing.JComboBox combo_cliente1;
+    private javax.swing.JComboBox combo_produto2;
     private javax.swing.JButton jBotaoSalvar;
     private javax.swing.JButton jBotaoVoltar;
     private javax.swing.JInternalFrame jInternalFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     // End of variables declaration//GEN-END:variables
 }

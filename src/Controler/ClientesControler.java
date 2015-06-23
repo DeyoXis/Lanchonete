@@ -42,19 +42,14 @@ public class ClientesControler {
             ResultSet result = statement.executeQuery(sql);
             int count = 0;
             while (result.next()){
-                String nome = result.getString("nome");
-                String CPF = result.getString("CPF");
-                String Telefone = result.getString("Telefone");
-                                
-                String output = "Clientes #%d: %s - %s - %s ";
-                System.out.println(String.format(output, ++count, nome,CPF, Telefone));
-                                
-                                statement.close();
-                                conexao.close();
+                s.add(result.getString("nome"));
             }
+                    statement.close();
+                                conexao.close();
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         } 
+        
         return s;
     }
        

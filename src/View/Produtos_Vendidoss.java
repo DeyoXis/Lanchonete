@@ -6,7 +6,6 @@ package View;
 
 import Controler.ProdutosControler;
 import Controler.Produtos_VendidosControler;
-import Model.Produtos;
 import Model.Produtos_Vendidos;
 import java.sql.SQLException;
 import java.util.Vector;
@@ -18,6 +17,7 @@ import java.util.logging.Logger;
  * @author info206
  */
 public class Produtos_Vendidoss extends javax.swing.JFrame {
+    private int Produtos_idProdutos;
 
     /**
      * Creates new form Produtos_Vendidoss
@@ -31,7 +31,7 @@ public class Produtos_Vendidoss extends javax.swing.JFrame {
                  combo_produtos.setModel(new  javax.swing.DefaultComboBoxModel(s));
             } catch (SQLException ex) {
                 Logger.getLogger(Pedido.class.getName()).log(Level.SEVERE, null, ex);
-            }  
+            }       
     }
 
     /**
@@ -81,6 +81,11 @@ public class Produtos_Vendidoss extends javax.swing.JFrame {
         });
 
         combo_produtos.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        combo_produtos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combo_produtosActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jInternalFrame1Layout = new javax.swing.GroupLayout(jInternalFrame1.getContentPane());
         jInternalFrame1.getContentPane().setLayout(jInternalFrame1Layout);
@@ -143,7 +148,9 @@ public class Produtos_Vendidoss extends javax.swing.JFrame {
 
     private void jBotaoSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBotaoSalvarActionPerformed
             try {
-        Produtos_Vendidos pv = new Produtos_Vendidos (this.CampoQuantidade.getText());
+                ProdutosControler prod= new ProdutosControler();
+                Produtos_idProdutos= prod.getIdByNome_Produtos((String)combo_produtos.getSelectedItem());
+        Produtos_Vendidos pv = new Produtos_Vendidos (0, this.CampoQuantidade.getText(), Produtos_idProdutos);
                 Produtos_VendidosControler produtos_vendidosControler = new Produtos_VendidosControler();
                 produtos_vendidosControler.inserirProdutos_Vendidos(pv);
     } catch (SQLException ex) {
@@ -154,6 +161,10 @@ public class Produtos_Vendidoss extends javax.swing.JFrame {
     private void CampoQuantidadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CampoQuantidadeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_CampoQuantidadeActionPerformed
+
+    private void combo_produtosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combo_produtosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combo_produtosActionPerformed
 
     /**
      * @param args the command line arguments
